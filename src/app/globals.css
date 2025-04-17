@@ -24,3 +24,95 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/* File: styles.css */
+
+.sun-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.sun {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, yellow, orange);
+  animation: pulse 2s infinite ease-in-out;
+  position: relative;
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+.circumference-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.circumference-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  z-index: 0;
+}
+
+.circumference-circle {
+  stroke-dasharray: 942; /* Circumference of the circle (2 * π * r) where r = 150px */
+  stroke-dashoffset: 942; /* Initially hide the stroke */
+  animation: stroke 5s linear infinite;
+}
+
+@keyframes stroke {
+  0% {
+    stroke-dashoffset: 942; /* Hide stroke */
+  }
+  100% {
+    stroke-dashoffset: 0; /* Show full stroke (circle completes) */
+  }
+}
+
+.sun-container:before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  border: 2px solid white;
+  z-index: -1;
+  animation: rotateCircumference 5s linear infinite;
+}
+
+@keyframes rotateCircumference {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
